@@ -1,0 +1,35 @@
+@model MeetUp
+<partial name="_Navbar" view-data="ViewData">
+
+    <div>
+        <h1>Create a Meet Up</h1>
+        <form action="/newMeetUp" method="post">
+            <div class="form-goup">
+                <span asp-validation-for="Title" class="text-danger"></span>
+                <label for="Title">Title</label>
+                <input asp-for="Title" class="form-control">
+            </div>
+            <div class="form-goup">
+                <span asp-validation-for="Date" class="text-danger"></span>
+                <label for=" Date"> Date</label>
+                <input name="Date" type="date" class="form-control">
+            </div>
+            <div class="form-goup">
+                <span asp-validation-for="ActDuration" class="text-danger"></span>
+                <label for="ActDuration">Duration</label>
+                <input type="number" asp-for="ActDuration" placeholder="Enter Duration">
+                <select asp-for="ActUnit">
+                    <option value="Days">Days</option>
+                    <option value="Hours">Hours</option>
+                    <option value="Minutes">Minutes</option>
+                </select>
+            </div>
+            <div class="form-goup">
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <label for="Description">Description</label>
+                <input asp-for="Description" class="form-control">
+            </div>
+            <input type="submit" value="Create" class="btn btn-primary">
+        </form>
+        </h1>
+    </div>

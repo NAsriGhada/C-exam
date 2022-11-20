@@ -1,0 +1,10 @@
+@model User
+
+<div style="display: flex; align-items:center;justify-content:space-between">
+    <h2>Dojo Meet Up Center</h2>
+    <h2>Welcome, @ViewBag.LoggedUser.FirstName!</h2>
+    <div>
+        <a asp-action="Dashboard" class="btn btn-warning"> Home </a> |
+        <a href="/logout" class="btn btn-danger"> Logout </a>
+    </div>
+</div>

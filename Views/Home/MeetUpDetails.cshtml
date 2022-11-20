@@ -1,0 +1,17 @@
+@model Participation
+<partial name="_Navbar" view-data="ViewData">
+
+    <div>
+        <h1>@ViewBag.OneMeetUp.Title</h1>
+        <p>Event Coordinator: </p>
+        <p>Description: @ViewBag.OneMeetUp.Description</p>
+        <p>Participants:</p>
+        <div>
+            <ul>
+                @foreach (Participation u in @ViewBag.OneMeetUp.ParticipantsList)
+                {
+                    <li>@u.User.FirstName</li>
+                }
+            </ul>
+        </div>
+    </div>

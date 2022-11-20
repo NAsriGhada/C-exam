@@ -1,0 +1,59 @@
+@model MeetUp
+<partial name="_Navbar" view-data="ViewData">
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>Meet Up</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Number of Participants</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (MeetUp m in ViewBag.AllMeetings)
+        {
+            <tr>
+                <td><a href="/meetups/@m.MeetUpId">@m.Title</a> </td>
+                <td>@m.DateDisplay(m.Date) </td>
+
+                <td>@m.ActDuration @m.ActUnit</td>
+
+                @* @if (ViewBag.Creators != null)
+                    {
+                    @foreach (var c in ViewBag.Creators)
+                    {
+                    @if (c.UserId == c.UserId)
+                    {
+                    <td>@c.FirstName</td>
+                    }
+                    }
+                    } *@
+                <td>d</td>
+                <td>@m.ParticipantsList.Count()</td>
+
+                @if (ViewBag.LoggedUser.UserId == m.UserId)
+                {
+                    <td><a href="/delete/@m.MeetUpId">delete</a> </td>
+                }
+                else
+                {
+                    if (@m.ParticipantsList.Any(g => g.UserId == ViewBag.LoggedUser.UserId))
+                    {
+                        <td><a href="/leave/@m.MeetUpId">Leave</a></td>
+                    }
+                    else
+                    {
+                        <td>
+                            <form action="/reserve" method="post">
+                                <input type="hidden" name="MeetUpId" value="@m.MeetUpId">
+                                <input type="submit" value="Join">
+                            </form>
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+
+    <a href="/meetups/new" class="btn btn-primary">Add New Activity</a>
